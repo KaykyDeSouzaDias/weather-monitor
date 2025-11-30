@@ -4,16 +4,20 @@ import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
-  SidebarHeader,
   SidebarFooter,
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarSeparator,
 } from '@/components/ui/sidebar'
+import { useWeather } from '@/stores/weather'
+import { storeToRefs } from 'pinia'
 
-// Menu items.
+const store = useWeather()
+const { weather } = storeToRefs(store)
+
 const items = [
   {
     title: 'Home',
@@ -44,27 +48,13 @@ const items = [
 </script>
 
 <template>
-  <Sidebar side="right">
-    <SidebarHeader>
-      <SidebarMenu>
-        <SidebarMenuItem>
-          <SidebarMenuButton size="lg">
-            <div
-              class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground"
-            >
-              <GalleryVerticalEnd class="size-4" />
-            </div>
-            <div class="grid flex-1 text-left text-sm leading-tight">
-              <span class="truncate font-semibold">Acme Inc</span>
-              <span class="truncate text-xs">Enterprise</span>
-            </div>
-          </SidebarMenuButton>
-        </SidebarMenuItem>
-      </SidebarMenu>
-    </SidebarHeader>
+  <Sidebar
+    side="right"
+    class="*:data-[sidebar=sidebar]:bg-zinc-900 *:data-[sidebar=sidebar]:text-white"
+  >
     <SidebarContent>
       <SidebarGroup>
-        <SidebarGroupLabel>Locations</SidebarGroupLabel>
+        <SidebarGroupLabel class="text-xs font-medium text-white">Locations</SidebarGroupLabel>
         <SidebarGroupContent>
           <SidebarMenu>
             <SidebarMenuItem v-for="item in items" :key="item.title">
@@ -79,20 +69,35 @@ const items = [
         </SidebarGroupContent>
       </SidebarGroup>
     </SidebarContent>
+    <span class="text-lg font-medium text-white px-3 py-2"> Weather Details </span>
+    <SidebarSeparator class="w-full m-0" />
     <SidebarFooter>
       <SidebarGroup>
-        <SidebarGroupLabel>Locations</SidebarGroupLabel>
-        <SidebarGroupContent>
-          <SidebarMenu>
-            <SidebarMenuItem v-for="item in items" :key="item.title">
-              <SidebarMenuButton as-child>
-                <a :href="item.url">
-                  <component :is="item.icon" />
-                  <span>{{ item.title }}</span>
-                </a>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
+        <SidebarGroupContent class="flex flex-col gap-2">
+          <div class="flex items-center justify-between">
+            <span class="text-md font-medium text-gray-400">Humidity</span>
+            <span class="text-md font-medium text-white"
+              >{{ weather?.main.humidity.toFixed(0) }}%</span
+            >
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-md font-medium text-gray-400">Pressure</span>
+            <span class="text-md font-medium text-white"
+              >{{ weather?.main.pressure.toFixed(0) }}Pa</span
+            >
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-md font-medium text-gray-400">Sea Level</span>
+            <span class="text-md font-medium text-white"
+              >{{ weather?.main.sea_level.toFixed(0) }}m</span
+            >
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-md font-medium text-gray-400">Wind</span>
+            <span class="text-md font-medium text-white"
+              >{{ weather?.wind.speed.toFixed(0) }}km/h</span
+            >
+          </div>
         </SidebarGroupContent>
       </SidebarGroup>
     </SidebarFooter>
