@@ -2,14 +2,13 @@
 import AppSidebar from '@/components//layout/AppSideBar.vue'
 import { SidebarProvider, SidebarTrigger, SidebarInset } from '@/components/ui/sidebar'
 import { Card, CardContent } from '@/components/ui/card'
-import { onMounted, ref } from 'vue'
+import { onMounted } from 'vue'
 import { weatherBackgroundSelector } from './helpers/weather-bg-selector'
 import { useWeather } from './stores/weather'
-import type { IWeather } from './models/weather'
+import { storeToRefs } from 'pinia'
 
-const { setWeather } = useWeather()
-
-const weather = ref<IWeather>()
+const store = useWeather()
+const { weather } = storeToRefs(store)
 
 onMounted(() => {
   getWeather()
@@ -17,9 +16,9 @@ onMounted(() => {
 
 async function getWeather() {
   try {
-    const response = await fetch('/api/weather')
+    const response = await fetch(`/api/weather?lat=${-22.9726012}&lon=${-43.1837901}`)
     const data = await response.json()
-    setWeather(data)
+    store.setWeather(data)
     weather.value = data
   } catch (error) {
     console.error('Erro ao buscar clima:', error)

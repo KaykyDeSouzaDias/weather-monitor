@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Calendar, Home, Inbox, Search, Settings } from 'lucide-vue-next'
 import {
   Sidebar,
   SidebarContent,
@@ -20,31 +19,36 @@ const { weather } = storeToRefs(store)
 
 const items = [
   {
-    title: 'Home',
-    url: '#',
-    icon: Home,
+    title: 'Copacabana, Rio de Janeiro',
+    latitude: -22.9726012,
+    longitude: -43.1837901,
   },
   {
-    title: 'Inbox',
-    url: '#',
-    icon: Inbox,
+    title: 'San Francisco County, United States',
+    latitude: 37.7576713,
+    longitude: -122.5200012,
   },
   {
-    title: 'Calendar',
-    url: '#',
-    icon: Calendar,
+    title: 'Aigáleo, Grece',
+    latitude: 37.99083,
+    longitude: 23.6971397,
   },
   {
-    title: 'Search',
-    url: '#',
-    icon: Search,
-  },
-  {
-    title: 'Settings',
-    url: '#',
-    icon: Settings,
+    title: 'Frederiksberg, Denmark',
+    latitude: 55.6712398,
+    longitude: 12.5114238,
   },
 ]
+
+async function onChangeLocation(latitude: number, longitude: number) {
+  try {
+    const response = await fetch(`/api/weather?lat=${latitude}&lon=${longitude}`)
+    const data = await response.json()
+    store.setWeather(data)
+  } catch (error) {
+    console.error('Erro ao buscar clima:', error)
+  }
+}
 </script>
 
 <template>
@@ -58,11 +62,12 @@ const items = [
         <SidebarGroupContent>
           <SidebarMenu>
             <SidebarMenuItem v-for="item in items" :key="item.title">
-              <SidebarMenuButton as-child>
-                <a :href="item.url">
-                  <component :is="item.icon" />
-                  <span>{{ item.title }}</span>
-                </a>
+              <SidebarMenuButton
+                as-child
+                class="cursor-pointer"
+                @click="() => onChangeLocation(item.latitude, item.longitude)"
+              >
+                <span>{{ item.title }}</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
