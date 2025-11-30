@@ -3,8 +3,11 @@ import AppSidebar from '@/components//layout/AppSideBar.vue'
 import { SidebarProvider, SidebarTrigger, SidebarInset } from '@/components/ui/sidebar'
 import { Card, CardContent } from '@/components/ui/card'
 import { onMounted, ref } from 'vue'
-import type { IWeather } from './models/weather'
 import { weatherBackgroundSelector } from './helpers/weather-bg-selector'
+import { useWeather } from './stores/weather'
+import type { IWeather } from './models/weather'
+
+const { setWeather } = useWeather()
 
 const weather = ref<IWeather>()
 
@@ -16,6 +19,7 @@ async function getWeather() {
   try {
     const response = await fetch('/api/weather')
     const data = await response.json()
+    setWeather(data)
     weather.value = data
   } catch (error) {
     console.error('Erro ao buscar clima:', error)
