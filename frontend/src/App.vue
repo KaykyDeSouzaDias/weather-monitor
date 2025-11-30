@@ -41,26 +41,28 @@ async function getWeather() {
             <SidebarTrigger class="-mr-1 ml-auto rotate-180" />
           </header>
 
-          <div class="w-full h-full flex items-end p-16">
+          <div class="w-full h-full flex items-end p-4 lg:p-16">
             <Card
-              class="bg-gray-500 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 border border-white shadow-lg/50"
+              class="w-full bg-gray-500 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 border border-white shadow-lg/50"
             >
               <CardContent>
-                <div class="flex items-center gap-6">
-                  <span class="text-9xl font-medium text-white"
+                <div class="flex flex-col items-start lg:flex-row lg:items-center gap-6">
+                  <span class="text-7xl xl:text-9xl font-medium text-white"
                     >{{ weather?.main.temp.toFixed(0) }}°</span
                   >
                   <div class="flex flex-col">
-                    <span class="text-5xl font-medium text-white">{{ weather?.name }}</span>
-                    <span class="text-md font-medium text-white">{{
+                    <span class="text-2xl lg:text-5xl font-medium text-white">{{
+                      weather?.name
+                    }}</span>
+                    <span class="text-sm lg:text-md font-medium text-white">{{
                       new Date().toString().slice(0, 25)
                     }}</span>
                   </div>
                   <div class="flex flex-col items-center">
                     <img
-                      :src="`https://openweathermap.org/img/wn/${weather?.weather[0]?.icon}@2x.png`"
+                      :src="`https://openweathermap.org/img/wn/${weather?.weather[0]?.icon ?? ''}@2x.png`"
                     />
-                    <span class="text-md font-medium text-white capitalize">{{
+                    <span class="text-sm lg:text-md font-medium text-white capitalize">{{
                       weather?.weather[0]?.description
                     }}</span>
                   </div>
