@@ -1,2 +1,237 @@
-# weather-monitor
-This project is a weather monitor system to get full climate insights
+# ☀️ Weather Monitor
+
+## 🎯 Visão Geral
+
+**Weather Monitor** é uma aplicação web fullstack que fornece informações completas sobre condições climáticas em diferentes localizações ao redor do mundo. O projeto utiliza a API do OpenWeatherMap para obter dados meteorológicos em tempo real.
+
+### ✨ Funcionalidades Principais
+
+-   🌍 Visualização de clima em múltiplas localizações
+-   📊 Exibição de detalhes meteorológicos (temperatura, umidade, pressão, velocidade do vento)
+-   🎨 Interface moderna com tema dinâmico baseado em condições climáticas
+-   📱 Design responsivo (mobile-first)
+-   🔄 Seleção dinâmica de localizações pré-configuradas
+-   🌅 Fundos dinâmicos baseados nas condições do tempo
+
+* * *
+
+## 🏗️ Arquitetura do Projeto
+
+```text
+┌──────────────────────────────────────┐
+│  Frontend (Vue 3 + Vite)             │
+│  - SPA com componentes reativos      │
+│  - Tailwind CSS                      │
+│  - Pinia para gerenciamento estado   │
+└─────────────────┬────────────────────┘
+                  │ HTTP/CORS
+┌─────────────────▼────────────────────┐
+│  Nginx (Servidor Web)                │
+│  - Port 8080                         │
+└─────────────────┬────────────────────┘
+                  │ FastCGI
+┌─────────────────▼────────────────────┐
+│  Backend (PHP 8.2 FPM)               │
+│  - API RESTful                       │
+│  - Integração OpenWeatherMap         │
+└──────────────────────────────────────┘
+```
+    
+
+* * *
+
+## 🛠️ Stack Tecnológico
+
+### Frontend
+
+| Tecnologia | Versão | Propósito |
+| --- | --- | --- |
+| **Vue** | 3.5.25 | Framework frontend |
+| **TypeScript** | ~5.9.0 | Tipagem estática |
+| **Vite** | 7.2.4 | Bundler & dev server |
+| **Tailwind CSS** | 4.1.17 | Utilitários de estilo |
+| **Pinia** | 3.0.4 | State management |
+| **Shadcn-vue** |  | Biblioteca de componentes |
+| **Reka-ui** | 2.6.0 | Componentes headless |
+| **Lucide Vue Next** | 0.555.0 | Ícones SVG |
+
+### Backend
+
+| Tecnologia | Versão | Propósito |
+| --- | --- | --- |
+| **PHP** | 8.2 | Runtime |
+| **Nginx** | Latest | Servidor web |
+
+### DevOps
+
+| Tecnologia | Versão | Propósito |
+| --- | --- | --- |
+| **Docker** | Latest | Containerização |
+| **Docker Compose** | 3.8 | Orquestração |
+
+* * *
+
+## 📁 Estrutura de Diretórios
+
+```text
+weather-monitor/
+├── backend/
+│   └── index.php
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── layout/
+│   │   │   │   └── AppSideBar.vue
+│   │   │   └── ui/
+│   │   │       ├── button/
+│   │   │       ├── card/
+│   │   │       ├── input/
+│   │   │       ├── separator/
+│   │   │       ├── sheet/
+│   │   │       ├── sidebar/
+│   │   │       ├── skeleton/
+│   │   │       └── tooltip/
+│   │   ├── helpers/
+│   │   │   └── weather-bg-selector.ts
+│   │   ├── lib/
+│   │   │   └── utils.ts
+│   │   ├── models/
+│   │   │   └── weather.ts
+│   │   ├── stores/
+│   │   │   └── weather.ts
+│   │   ├── App.vue
+│   │   ├── main.ts
+│   │   └── style.css
+│   ├── public/
+│   │   └── weather-background/
+│   │       ├── broken-clouds.jpg
+│   │       ├── clear-sky.jpg
+│   │       ├── few-clouds.jpg
+│   │       ├── mist.jpg
+│   │       ├── rain.jpg
+│   │       ├── scattered-clouds.jpg
+│   │       ├── shower-rain.jpg
+│   │       ├── snow.jpg
+│   │       └── thunderstorm.jpg
+│   ├── index.html
+│   ├── vite.config.ts
+│   ├── tsconfig.json
+│   ├── tailwind.config.js
+│   ├── nginx.conf
+│   ├── dockerfile
+│   ├── package.json
+│   └── README.md
+├── docker-compose.yml
+├── .env
+├── .gitignore
+├── LICENSE
+└── README.md
+```
+    
+
+* * *
+
+## 📥 Guia de Instalação
+
+### ✅ Pré-requisitos
+
+-   Docker & Docker Compose instalados
+-   Node.js 20.19.0+ (desenvolvimento local)
+-   Chave API OpenWeatherMap (gratuita)
+
+### 🚀 Passos de Instalação
+
+#### 1️⃣ Clone o Repositório
+
+```text
+git clone https://github.com/seu-usuario/weather-monitor.git
+cd weather-monitor
+```
+    
+
+#### 2️⃣ Configure Variáveis de Ambiente
+
+```text
+# Crie arquivo .env na raiz
+OPENWEATHER_API_KEY=sua_chave_aqui
+```
+    
+
+**Como obter a chave:**
+
+1.  Acesse [openweathermap.org](https://openweathermap.org/)
+2.  Crie uma conta
+3.  Gere API Key
+
+#### 3️⃣ Inicie com Docker Compose
+
+```text
+# Sem rebuild
+docker-compose up -d
+
+# Com rebuild
+docker-compose up --build -d
+```
+    
+
+#### 4️⃣ Acesse a Aplicação
+
+```text
+http://localhost:8080
+```
+    
+
+✅ **Pronto!** A aplicação está rodando.
+
+### 💻 Desenvolvimento Local (Frontend)
+
+```text
+cd frontend
+
+# Instalar dependências
+npm install
+
+# Servidor de desenvolvimento (hot reload)
+npm run dev
+
+# Build para produção
+npm run build
+``` 
+    
+
+* * *
+
+## 📚 Recursos Úteis
+
+### Documentação Oficial
+
+-   [Vue 3 Docs](https://vuejs.org/guide/quick-start.html)
+-   [Tailwind CSS](https://tailwindcss.com/docs/installation/using-vite)
+-   [Pinia](https://pinia.vuejs.org/getting-started.html)
+-   [OpenWeatherMap API](https://openweathermap.org/api)
+-   [Docker](https://docs.docker.com/get-started/)
+-   [Shadcn-vue](https://www.shadcn-vue.com/docs/introduction)
+
+* * *
+
+## 📄 Licença
+
+GNU General Public License v3.0 - Veja [LICENSE](https://github.com/KaykyDeSouzaDias/weather-monitor?tab=GPL-3.0-1-ov-file#readme)
+
+* * *
+
+## 🤝 Contribuições
+
+Contribuições são bem-vindas! Sinta-se livre para:
+
+1.  Fork o projeto
+2.  Criar uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3.  Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4.  Push para a branch (`git push origin feature/AmazingFeature`)
+5.  Abra um Pull Request
+
+* * *
+
+## ⭐ Suporte
+
+Se este projeto foi útil para você, considere dar uma ⭐ no repositório!
