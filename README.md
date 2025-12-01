@@ -15,6 +15,22 @@
 
 * * *
 
+## 🎨 UI/UX
+
+O layout e a experiência do usuário (UI/UX) deste projeto foram desenvolvidos utilizando o seguinte conceito visual, do artista [Arthur K](https://dribbble.com/thearthurk) como [referência](https://dribbble.com/shots/7376567-Weather-App-Website?utm_source=Clipboard_Shot&utm_campaign=thearthurk&utm_content=Weather%20App%20Website&utm_medium=Social_Share&utm_source=Clipboard_Shot&utm_campaign=thearthurk&utm_content=Weather%20App%20Website&utm_medium=Social_Share):
+
+<div align="center">
+  <img src="https://cdn.dribbble.com/userupload/25002437/file/original-30114913091e8d953a02a6d0083e5f69.png?resize=1504x1128&vertical=center" alt="Referência de Design UI/UX" width="700">
+</div>
+
+O projeto segue uma estética **minimalista e funcional**. A estrutura visual foi dividida entre uma *sidebar* de controle e uma área principal de conteúdo, onde os dados são apresentados em um *card*. Essa disposição prioriza a legibilidade e a facilidade de uso, mantendo a interface leve e livre de distrações.
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/bfbe6e76-057a-47e3-b8e3-bce7fa9de2fe" alt="Referência de Design UI/UX" width="700">
+</div>
+
+* * *
+
 ## 🏗️ Arquitetura do Projeto
 
 ```text
