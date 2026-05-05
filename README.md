@@ -1,5 +1,7 @@
 # ☀️ Weather Monitor
 
+⚠️ **Atenção** para visualizar os dados do site, rode o backend hospedado primeiro: https://weather-monitor-backend.onrender.com/
+
 ## 🎯 Visão Geral
 
 **Weather Monitor** é uma aplicação web fullstack que fornece informações completas sobre condições climáticas em diferentes localizações ao redor do mundo. O projeto utiliza a API do OpenWeatherMap para obter dados meteorológicos em tempo real.
